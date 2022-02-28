@@ -1,0 +1,61 @@
+instance = await MetaphorsToken.deployed()
+sales = await TokenSales.deployed()
+
+instance.createTokenInfo("투쟁",500,100,1,false, {from: accounts[0]})
+
+instance.getAllTokenInfoNames()
+instance.getTokenInfo("투쟁")
+
+instance.createToken("투쟁", {from: accounts[0], value: 1})
+
+instance.editTokenImage("투쟁","https://ipfs", {from: accounts[0]})
+
+instance.useToken("투쟁", {from: accounts[0]})
+sales.useTokenNotOnSale(1, {from: accounts[0]})
+
+instance.getTokenCount("투쟁")
+instance.getTokenOfUser(accounts[0], "투쟁")
+instance.getAllTokenNamesOfUser(accounts[0])
+
+// 보유 토큰 개수
+instance.balanceOf(accounts[0])
+
+instance.setApprovalForAll(sales.address, true)
+instance.isApprovedForAll(accounts[0], sales.address)
+
+instance.ownerOf(1)
+instance.getApproved(1)
+
+instance.approve(accounts[2],1)
+sales.setForSale(1, 10, {from: accounts[0]})
+instance.approve(accounts[2],2)
+sales.setForSale(2, 10, {from: accounts[1]})
+instance.approve(accounts[0],2)
+sales.setForSale(3, 10, {from: accounts[2]})
+sales.getTokenIdOnSales()
+sales.getTokenPrice(1)
+
+sales.getTokenIdOnSales()
+instance.setApprovalForAll(sales.address, true, {from: accounts[0]})
+instance.setApprovalForAll(sales.address, true, {from: accounts[1]})
+instance.setApprovalForAll(sales.address, true, {from: accounts[2]})
+
+web3.utils.fromWei(web3.eth.getBalance(accounts[0]),'ether')
+web3.eth.getBalance(accounts[1])
+sales.purchaseToken(3, {from: accounts[1], value: 10})
+sales.purchaseToken(1, {from: accounts[1], value: 10})
+sales.purchaseToken(2, {from: accounts[0], value: 10})
+sales.getTokenIdOnSales()
+instance.ownerOf(1)
+
+web3.eth.getBalance(accounts[0])
+web3.eth.getBalance(accounts[1])
+sales.getTokenIdOnSales()
+
+sales.removeTokenOnSales(1, {from: accounts[0]})
+sales.removeTokenOnSales(2, {from: accounts[1]})
+sales.removeTokenOnSales(3, {from: accounts[2]})
+
+// accounts[1] 이 아이템 1을 구매하는 것은 되나,
+// 정렬이 이뤄진 뒤 accounts[1]로 아이템 3을 구매할때 오류 발생
+
