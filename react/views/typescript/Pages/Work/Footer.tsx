@@ -24,7 +24,7 @@ const Footer = ({
 
   const handleClick = () => {
     setNextEpisodeToggle((prev) => !prev);
-    window.location.replace(`/work/viewer/${params.id}`);
+    navigate(`/work/viewer/${params.id}`);
   };
 
   return (
