@@ -7,7 +7,7 @@
 ```bash
 - Metaphors
     +- public         ==> 정적 리소스 파일들
-    +- routes         ==> Express 소스 파일들
+    +- server         ==> Express 소스 파일들
     +- stories        ==> React 스토리북 소스 파일들
     +- truffle 
       +- abi          ==> 스마트 컨트랙트의 abi 파일들
